@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Finance Dashboard
+
+A full-stack financial management dashboard built with Next.js 15, Prisma, PostgreSQL, and Redux Toolkit. Track accounts, transactions, budgets, and savings goals in one place.
+
+---
+
+## Features
+
+- Account management with balance tracking
+- Transaction history with category filters
+- Budget planning with monthly limits
+- Savings goals with progress tracking
+- Responsive sidebar UI with shadcn/ui components
+- PostgreSQL database with Prisma ORM
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, Turbopack)
+- **Language:** TypeScript
+- **State:** Redux Toolkit
+- **Database:** PostgreSQL + Prisma ORM
+- **UI:** shadcn/ui (Radix primitives), Tailwind CSS v4, lucide-react
+- **Components:** Sidebar, Sheet, Dialog, Tooltip, Skeleton
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+, PostgreSQL
+
+### Installation
+
+```bash
+git clone https://github.com/dev0xgenius/personal-finance-dashboard.git
+cd personal-finance-dashboard
+npm install
+```
+
+### Environment (.env)
+
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/finance_db"
+```
+
+### Database Setup
+
+```bash
+npx prisma migrate dev
+```
+
+### Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **User** - name, email (unique)
+- **Account** - user_id, name, type, balance (Decimal)
+- **Transaction** - account_id, amount, date, category, description
+- **Budget** - user_id, category, monthly_limit, month_year
+- **Goal** - user_id, name, target_amount, current_amount, deadline
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+app/
+  page.tsx        # Dashboard overview
+prisma/
+  schema.prisma   # Database models
+  migrations/     # Migration history
+components/
+  ui/             # shadcn/ui components
+lib/
+  store.ts        # Redux store configuration
+  hooks.ts        # Custom hooks
+  utils.ts        # Utility functions
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**0xgenius** - [GitHub](https://github.com/dev0xgenius)
